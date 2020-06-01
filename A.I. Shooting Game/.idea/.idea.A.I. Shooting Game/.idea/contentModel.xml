@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="$PROJECT_DIR$" t="IncludeRecursive">
+      <e p="A.I. Shooting Game.sln" t="IncludeFlat" />
+      <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="ML-Agents" t="Include">
+          <e p="Editor" t="Include">
+            <e p="DisableBurstFromMenu.cs" t="Include" />
+            <e p="Tests" t="Include">
+              <e p="StandaloneBuildTest.cs" t="Include" />
+            </e>
+          </e>
+          <e p="Examples" t="Include">
+            <e p="3DBall" t="Include">
+              <e p="Scripts" t="Include">
+                <e p="Ball3DAgent.cs" t="Include" />
+                <e p="Ball3DHardAgent.cs" t="Include" />
+              </e>
+            </e>
+            <e p="Basic" t="Include">
+              <e p="Scripts" t="Include">
+                <e p="BasicController.cs" t="Include" />
+                <e p="BasicSensorComponent.cs" t="Include" />
+              </e>
+            </e>
+            <e p="Bouncer" t="Include">
+              <e p="Scripts" t="Include">
+                <e p="BouncerAgent.cs" t="Include" />
+                <e p="BouncerTarget.cs" t="Include" />
+              </e>
+            </e>
+            <e p="Crawler" t="Include">
+              <e p="Scripts" t="Include">
+                <e p="CrawlerAgent.cs" t="Include" />
+              </e>
+            </e>
+            <e p="FoodCollector" t="Include">
+              <e p="Scripts" t="Include">
+                <e p="FoodCollectorAgent.cs" t="Include" />
+                <e p="FoodCollectorArea.cs" t="Include" />
+                <e p="FoodCollectorSettings.cs" t="Include" />
+                <e p="FoodLogic.cs" t="Include" />
+              </e>
+            </e>
+            <e p="GridWorld" t="Include">
+              <e p="Scripts" t="Include">
+                <e p="GridAgent.cs" t="Include" />
+                <e p="GridArea.cs" t="Include" />
+                <e p="GridSettings.cs" t="Include" />
+              </e>
+            </e>
+            <e p="Hallway" t="Include">
+              <e p="Scripts" t="Include">
+                <e p="HallwayAgent.cs" t="Include" />
+                <e p="HallwaySettings.cs" t="Include" />
+              </e>
+            </e>
+            <e p="PushBlock" t="Include">
+              <e p="Scripts" t="Include">
+                <e p="GoalDetect.cs" t="Include" />
+                <e p="PushAgentBasic.cs" t="Include" />
+                <e p="PushBlockSettings.cs" t="Include" />
+              </e>
+            </e>
+            <e p="Pyramids" t="Include">
+              <e p="Scripts" t="Include">
+                <e p="PyramidAgent.cs" t="Include" />
+                <e p="PyramidArea.cs" t="Include" />
+                <e p="PyramidSwitch.cs" t="Include" />
+              </e>
+            </e>
+            <e p="Reacher" t="Include">
+              <e p="Scripts" t="Include">
+                <e p="ReacherAgent.cs" t="Include" />
+                <e p="ReacherGoal.cs" t="Include" />
+              </e>
+            </e>
+            <e p="SharedAssets" t="Include">
+              <e p="Materials" t="Include">
+                <e p="GridPatternShader.shader" t="Include" />
+                <e p="ShaderOutline.shader" t="Include" />
+                <e p="ShaderRadialGrid.shader" t="Include" />
+              </e>
+              <e p="Scripts" t="Include">
+                <e p="AdjustTrainingTimescale.cs" t="Include" />
+                <e p="Area.cs" t="Include" />
+                <e p="CameraFollow.cs" t="Include" />
+                <e p="FlyCamera.cs" t="Include" />
+                <e p="GroundContact.cs" t="Include" />
+                <e p="JointDriveController.cs" t="Include" />
+                <e p="ModelOverrider.cs" t="Include" />
+                <e p="Monitor.cs" t="Include" />
+                <e p="ProjectSettingsOverrides.cs" t="Include" />
+                <e p="SensorBase.cs" t="Include" />
+                <e p="TargetContact.cs" t="Include" />
+              </e>
+            </e>
+            <e p="Soccer" t="Include">
+              <e p="Scripts" t="Include">
+                <e p="AgentSoccer.cs" t="Include" />
+                <e p="SoccerBallController.cs" t="Include" />
+                <e p="SoccerFieldArea.cs" t="Include" />
+                <e p="SoccerSettings.cs" t="Include" />
+              </e>
+            </e>
+            <e p="Startup" t="Include">
+              <e p="Scripts" t="Include">
+                <e p="Startup.cs" t="Include" />
+              </e>
+            </e>
+            <e p="Template" t="Include">
+              <e p="Scripts" t="Include">
+                <e p="TemplateAgent.cs" t="Include" />
+              </e>
+            </e>
+            <e p="Tennis" t="Include">
+              <e p="Scripts" t="Include">
+                <e p="HitWall.cs" t="Include" />
+                <e p="TennisAgent.cs" t="Include" />
+                <e p="TennisArea.cs" t="Include" />
+              </e>
+            </e>
+            <e p="Walker" t="Include">
+              <e p="Scripts" t="Include">
+                <e p="WalkerAgent.cs" t="Include" />
+              </e>
+            </e>
+            <e p="WallJump" t="Include">
+              <e p="Scripts" t="Include">
+                <e p="WallJumpAgent.cs" t="Include" />
+                <e p="WallJumpSettings.cs" t="Include" />
+              </e>
+            </e>
+            <e p="Worm" t="Include">
+              <e p="Scripts" t="Include">
+                <e p="WormAgent.cs" t="Include" />
+              </e>
+            </e>
+          </e>
+        </e>
+        <e p="Scripts" t="Include">
+          <e p="Enemy.cs" t="Include" />
+          <e p="ShootingAgent.cs" t="Include" />
+        </e>
+      </e>
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="Packages" t="ExcludeRecursive" />
+      <e p="Temp/bin" t="ExcludeRecursive" />
+    </e>
+    <e p="$USER_HOME$/Library/Caches/JetBrains/Rider2020.1/extResources" t="IncludeRecursive" />
+    <e p="$USER_HOME$/Library/Caches/JetBrains/Rider2020.1/resharper-host/local/Transient/ReSharperHost/v201/SolutionCaches/_A.I. Shooting Game.2057156054.00" t="ExcludeRecursive" />
+  </component>
+</project>
