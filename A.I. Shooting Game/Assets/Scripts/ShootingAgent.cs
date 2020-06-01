@@ -8,6 +8,7 @@ using UnityEngine;
 public class ShootingAgent : Agent
 {
     public int score = 0;
+    public float speed = 3f;
     
     public Transform shootingPoint;
     public int minStepsBetweenShots = 50;
@@ -49,6 +50,8 @@ public class ShootingAgent : Agent
             if (StepsUntilShotIsAvaliable <= 0)
                 ShotAvaliable = true;
         }
+        
+        AddReward(-1f/MaxStep);
     }
     public override void OnActionReceived(float[] vectorAction)
     {
@@ -56,17 +59,24 @@ public class ShootingAgent : Agent
         {
             Shoot();
         }
+
+        Rb.velocity = new Vector3(vectorAction[1] * speed, 0f, vectorAction[2] * speed);
     }
     
     public override void Initialize()
     {
         StartingPosition = transform.position;
         Rb = GetComponent<Rigidbody>();
+        
+        //TODO: Delete
+        Rb.freezeRotation = true;
     }
     
     public override void Heuristic(float[] actionsOut)
     {
         actionsOut[0] = Input.GetKey(KeyCode.P) ? 1f : 0f;
+        actionsOut[2] = Input.GetAxis("Horizontal");
+        actionsOut[1] = -Input.GetAxis("Vertical");
         //transform.rotation.SetLookRotation();
     }
 
