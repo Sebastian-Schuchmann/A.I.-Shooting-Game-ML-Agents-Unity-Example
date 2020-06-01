@@ -50,8 +50,6 @@ public class ShootingAgent : Agent
                 ShotAvaliable = true;
         }
     }
-
-
     public override void OnActionReceived(float[] vectorAction)
     {
         if (Mathf.RoundToInt(vectorAction[0]) >= 1)
@@ -83,6 +81,7 @@ public class ShootingAgent : Agent
     public void RegisterKill()
     {
         score++;
+        
         AddReward(1.0f);
         EndEpisode();
     }
