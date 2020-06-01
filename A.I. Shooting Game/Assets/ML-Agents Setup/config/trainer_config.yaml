@@ -24,10 +24,21 @@ default:
             gamma: 0.99
 
 Shooter:
+    batch_size: 2048
+    buffer_size: 20480
     hidden_units: 128
-    time_horizon: 128
-    summary_freq: 500
-    max_steps: 5.0e5
+    time_horizon: 1000
+    summary_freq: 1000
+    beta: 0.1
+    max_steps: 40.0e5
+    reward_signals:
+        extrinsic:
+            strength: 1.0
+            gamma: 0.99
+        curiosity:
+            strength: 0.01
+            gamma: 0.99
+            encoding_size: 64
 
 FoodCollector:
     normalize: false

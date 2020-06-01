@@ -143,6 +143,7 @@
         </e>
         <e p="Scripts" t="Include">
           <e p="Enemy.cs" t="Include" />
+          <e p="Projectile.cs" t="Include" />
           <e p="ShootingAgent.cs" t="Include" />
         </e>
       </e>

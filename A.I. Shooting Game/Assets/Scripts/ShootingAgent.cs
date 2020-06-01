@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using Unity.MLAgents;
 using Unity.MLAgents.Sensors;
 using UnityEngine;
@@ -9,17 +10,21 @@ public class ShootingAgent : Agent
 {
     public int score = 0;
     public float speed = 3f;
+    public float rotationSpeed = 3f;
     
     public Transform shootingPoint;
     public int minStepsBetweenShots = 50;
     public int damage = 100;
+
+    public Projectile projectile;
     
     private bool ShotAvaliable = true;
     private int StepsUntilShotIsAvaliable = 0;
     
     private Vector3 StartingPosition;
     private Rigidbody Rb;
-    
+
+    public event Action OnEnvironmentReset;
     
     private void Shoot()
     {
@@ -28,13 +33,19 @@ public class ShootingAgent : Agent
         
         var layerMask = 1 << LayerMask.NameToLayer("Enemy");
         var direction = transform.forward;
+
+        var spawnedProjectile = Instantiate(projectile, shootingPoint.position, Quaternion.Euler(0f, -90f, 0f));
+        spawnedProjectile.SetDirection(direction);
         
-        Debug.Log("Shot");
-        Debug.DrawRay(shootingPoint.position, direction * 200f, Color.green, 2f);
+        Debug.DrawRay(transform.position, direction, Color.blue, 1f);
         
         if (Physics.Raycast(shootingPoint.position, direction, out var hit, 200f, layerMask))
         {
             hit.transform.GetComponent<Enemy>().GetShot(damage, this);
+        }
+        else
+        {
+            AddReward(-0.002f);
         }
 
         ShotAvaliable = false;
@@ -61,6 +72,7 @@ public class ShootingAgent : Agent
         }
 
         Rb.velocity = new Vector3(vectorAction[1] * speed, 0f, vectorAction[2] * speed);
+        transform.Rotate(Vector3.up, vectorAction[3] * rotationSpeed);
     }
     
     public override void Initialize()
@@ -76,13 +88,14 @@ public class ShootingAgent : Agent
     {
         actionsOut[0] = Input.GetKey(KeyCode.P) ? 1f : 0f;
         actionsOut[2] = Input.GetAxis("Horizontal");
-        actionsOut[1] = -Input.GetAxis("Vertical");
-        //transform.rotation.SetLookRotation();
+        //actionsOut[1] = -Input.GetAxis("Vertical");
+        actionsOut[3] = Input.GetAxis("Vertical");
     }
 
     public override void OnEpisodeBegin()
     {
-        Debug.Log("Episode Begin");
+        OnEnvironmentReset?.Invoke();
+
         transform.position = StartingPosition;
         Rb.velocity = Vector3.zero;
         ShotAvaliable = true;
