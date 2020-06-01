@@ -25,6 +25,7 @@ default:
 
 Shooter:
     batch_size: 2048
+    #learning_rate_schedule: constant
     buffer_size: 20480
     hidden_units: 128
     time_horizon: 1000

@@ -17,6 +17,7 @@ public class ShootingAgent : Agent
     public int damage = 100;
 
     public Projectile projectile;
+    public EnemyManager enemyManager;
     
     private bool ShotAvaliable = true;
     private int StepsUntilShotIsAvaliable = 0;
@@ -45,11 +46,16 @@ public class ShootingAgent : Agent
         }
         else
         {
-            AddReward(-0.002f);
+            AddReward(-0.0035f);
         }
 
         ShotAvaliable = false;
         StepsUntilShotIsAvaliable = minStepsBetweenShots;
+    }
+
+    public override void CollectObservations(VectorSensor sensor)
+    {
+        sensor.AddObservation(ShotAvaliable);
     }
 
     private void FixedUpdate()
@@ -104,8 +110,16 @@ public class ShootingAgent : Agent
     public void RegisterKill()
     {
         score++;
-        
-        AddReward(1.0f);
-        EndEpisode();
+        AddReward(1.0f / enemyManager.enemies.Length);
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("enemy"))
+        {
+            enemyManager.SetEnemiesActive();
+            AddReward(-1f);
+            EndEpisode();
+        }
     }
 }
