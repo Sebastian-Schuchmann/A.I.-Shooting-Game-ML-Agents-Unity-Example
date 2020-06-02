@@ -41,6 +41,7 @@ Shooter:
             gamma: 0.99
             encoding_size: 64
 
+
 FoodCollector:
     normalize: false
     beta: 5.0e-3

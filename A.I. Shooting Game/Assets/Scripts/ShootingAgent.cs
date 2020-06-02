@@ -24,6 +24,7 @@ public class ShootingAgent : Agent
     
     private Vector3 StartingPosition;
     private Rigidbody Rb;
+    private EnvironmentParameters EnvironmentParameters;
 
     public event Action OnEnvironmentReset;
     
@@ -46,7 +47,7 @@ public class ShootingAgent : Agent
         }
         else
         {
-            AddReward(-0.0035f);
+            AddReward(-0.033f);
         }
 
         ShotAvaliable = false;
@@ -88,6 +89,7 @@ public class ShootingAgent : Agent
         
         //TODO: Delete
         Rb.freezeRotation = true;
+        EnvironmentParameters = Academy.Instance.EnvironmentParameters;
     }
     
     public override void Heuristic(float[] actionsOut)
@@ -102,6 +104,9 @@ public class ShootingAgent : Agent
     {
         OnEnvironmentReset?.Invoke();
 
+        //Load Parameter from Curciulum
+        minStepsBetweenShots = Mathf.FloorToInt(EnvironmentParameters.GetWithDefault("shootingFrequenzy", 50));
+        
         transform.position = StartingPosition;
         Rb.velocity = Vector3.zero;
         ShotAvaliable = true;
@@ -110,7 +115,7 @@ public class ShootingAgent : Agent
     public void RegisterKill()
     {
         score++;
-        AddReward(1.0f / enemyManager.enemies.Length);
+        AddReward(1.0f / EnvironmentParameters.GetWithDefault("amountZombies", 3f));
     }
 
     private void OnCollisionEnter(Collision other)
