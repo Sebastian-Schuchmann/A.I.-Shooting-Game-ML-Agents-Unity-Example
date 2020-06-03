@@ -19,6 +19,7 @@
     </explicitIncludes>
     <explicitExcludes>
       <Path>.idea</Path>
+      <Path>Build.app</Path>
       <Path>Library</Path>
       <Path>Logs</Path>
       <Path>Temp</Path>

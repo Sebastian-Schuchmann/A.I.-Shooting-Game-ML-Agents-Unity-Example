@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.MLAgents;
 using UnityEngine;
+using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour
@@ -21,6 +22,7 @@ public class Enemy : MonoBehaviour
     public float randomRangeZ_Neg = 0f;
 
     public ShootingAgent Agent;
+    private NavMeshAgent navAgent;
     
     private void Start()
     {
@@ -29,13 +31,17 @@ public class Enemy : MonoBehaviour
         
         EnvironmentParameters = Academy.Instance.EnvironmentParameters;
         speed = EnvironmentParameters.GetWithDefault("zombieSpeed", 1f);
+        
+        navAgent = GetComponent<NavMeshAgent>();
+        navAgent.speed = speed;
 
         Agent.OnEnvironmentReset += Respawn;
     }
 
     private void FixedUpdate()
     {
-        transform.position = Vector3.MoveTowards(transform.position, Agent.transform.position, Time.fixedDeltaTime * speed);
+        navAgent.destination = Agent.transform.position;
+        //transform.position = Vector3.MoveTowards(transform.position, Agent.transform.position, Time.fixedDeltaTime * speed);
     }
 
     public void GetShot(int damage, ShootingAgent shooter)
@@ -66,6 +72,8 @@ public class Enemy : MonoBehaviour
     {
         CurrentHealth = startingHealth;
         speed = EnvironmentParameters.GetWithDefault("zombieSpeed", 1f);
+        navAgent.speed = speed;
+        
         transform.position = new Vector3(StartPosition.x + Random.Range(randomRangeX_Neg, randomRangeX_Pos), StartPosition.y, StartPosition.z + Random.Range(randomRangeZ_Neg, randomRangeZ_Pos));
     }
 }

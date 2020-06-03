@@ -57,6 +57,7 @@ public class ShootingAgent : Agent
     public override void CollectObservations(VectorSensor sensor)
     {
         sensor.AddObservation(ShotAvaliable);
+        //Add Angle Y
     }
 
     private void FixedUpdate()
@@ -105,7 +106,7 @@ public class ShootingAgent : Agent
         OnEnvironmentReset?.Invoke();
 
         //Load Parameter from Curciulum
-        minStepsBetweenShots = Mathf.FloorToInt(EnvironmentParameters.GetWithDefault("shootingFrequenzy", 50));
+        minStepsBetweenShots = Mathf.FloorToInt(EnvironmentParameters.GetWithDefault("shootingFrequenzy", 30f));
         
         transform.position = StartingPosition;
         Rb.velocity = Vector3.zero;
@@ -115,7 +116,7 @@ public class ShootingAgent : Agent
     public void RegisterKill()
     {
         score++;
-        AddReward(1.0f / EnvironmentParameters.GetWithDefault("amountZombies", 3f));
+        AddReward(1.0f / EnvironmentParameters.GetWithDefault("amountZombies", 4f) * 2);
     }
 
     private void OnCollisionEnter(Collision other)

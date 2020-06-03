@@ -25,13 +25,14 @@ default:
 
 Shooter:
     batch_size: 2048
-    #learning_rate_schedule: constant
+    learning_rate_schedule: constant
     buffer_size: 20480
-    hidden_units: 128
+    hidden_units: 512
+    num_layers: 3
     time_horizon: 1000
-    summary_freq: 1000
+    summary_freq: 5000
     beta: 0.1
-    max_steps: 40.0e5
+    max_steps: 40.0e6
     reward_signals:
         extrinsic:
             strength: 1.0
@@ -39,7 +40,7 @@ Shooter:
         curiosity:
             strength: 0.01
             gamma: 0.99
-            encoding_size: 64
+            encoding_size: 128
 
 
 FoodCollector:

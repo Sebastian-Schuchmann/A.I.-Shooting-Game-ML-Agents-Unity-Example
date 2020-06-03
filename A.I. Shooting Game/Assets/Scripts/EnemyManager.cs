@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.MLAgents;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -12,29 +13,26 @@ public class EnemyManager : MonoBehaviour
 
     private int EnemyCount;
     private EnvironmentParameters EnvironmentParameters;
+    private int startingPoint = 0;
 
     private void Start()
     {
         EnvironmentParameters = Academy.Instance.EnvironmentParameters;
-        EnemyCount = Mathf.FloorToInt(EnvironmentParameters.GetWithDefault("amountZombies", 3f));
+        EnemyCount = Mathf.FloorToInt(EnvironmentParameters.GetWithDefault("amountZombies", 6f) * 2);
         
         SetEnemiesActive();
     }
 
     public bool isEveryEnemyDead()
     {
-        int counter = 0;
         int deathCounter = 0;
         
-        foreach (var enemy in enemies)
+        for (int i = startingPoint; i < EnemyCount + startingPoint; i++)
         {
-            if (counter >= EnemyCount)
-                break;
-            
-            counter++;
-            if (!enemy.isActiveAndEnabled)
+            if (!enemies[i].isActiveAndEnabled)
                 deathCounter++;
         }
+
         return deathCounter >= EnemyCount;
     }
 
@@ -50,13 +48,19 @@ public class EnemyManager : MonoBehaviour
     public void SetEnemiesActive()
     {
         int counter = 0;
+        EnemyCount = Mathf.FloorToInt(EnvironmentParameters.GetWithDefault("amountZombies", 6f) * 2);
+
+        startingPoint = Mathf.FloorToInt(Random.Range(0f, enemies.Length - EnemyCount));
+
         foreach (var enemy in enemies)
         {
-            if (counter >= EnemyCount)
-                break;
-            
+            enemy.gameObject.SetActive(false);
+        }
+        
+        for (int i = startingPoint; i < EnemyCount + startingPoint; i++)
+        {
             counter++;
-            enemy.gameObject.SetActive(true);
+            enemies[i].gameObject.SetActive(true);
         }
     }
 }
