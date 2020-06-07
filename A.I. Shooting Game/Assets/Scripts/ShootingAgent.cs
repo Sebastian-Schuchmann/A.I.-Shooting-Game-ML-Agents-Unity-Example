@@ -116,7 +116,7 @@ public class ShootingAgent : Agent
     public void RegisterKill()
     {
         score++;
-        AddReward(1.0f / EnvironmentParameters.GetWithDefault("amountZombies", 4f) * 2);
+        AddReward(1.0f / EnvironmentParameters.GetWithDefault("amountZombies", 4f));
     }
 
     private void OnCollisionEnter(Collision other)

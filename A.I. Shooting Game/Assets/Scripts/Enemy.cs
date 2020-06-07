@@ -61,7 +61,6 @@ public class Enemy : MonoBehaviour
     
     private void Die(ShootingAgent shooter)
     {
-        Debug.Log("I died!");
         shooter.RegisterKill();
         
         gameObject.SetActive(false);
